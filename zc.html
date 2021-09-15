@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(image/bj.png);
+            background-color: rgba(0, 0, 0);
+            background-attachment: fixed;
+            text-align: center;
+        }
+        
+        td {
+            color: seashell;
+        }
+    </style>
+</head>
+<script>
+    function checkpsw() {
+        var p1 = document.getElementById("password").value;
+        var p2 = document.getElementById("passwordcheck").value;
+        if (p1 == p2) {
+            document.getElementById("tishi").innerHTML = "<font color='green'>两次密码相同</font>";
+            document.getElementById("submit").disabled = false;
+        } else {
+            document.getElementById("tishi").innerHTML = "<font color='red'>两次密码不相同</font>";
+            document.getElementById("submit").disabled = true;
+        }
+    }
+
+    function fileup(file) {
+        if (!file.files || !file.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            document.getElementById("previewimg").src = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+</script>
+
+<body>
+
+    <div align=center>
+        <form action="#" method="post" autocomplete="on">
+            <table>
+
+                <tr>
+                    <td align=right>用户名：</td>
+                    <td><input type=text name="user" required="required" /></td>
+                </tr>
+
+                <tr>
+                    <td align=right>密码：</td>
+                    <td><input type=password name="psw" id="password" required="required" /></td>
+                </tr>
+
+                <tr>
+                    <td align=right>确认密码：</td>
+                    <td><input type=password name="psw1" id="passwordcheck" onblur="checkpsw()" /><span id="tishi"></span></td>
+                </tr>
+
+                <tr>
+                    <td align=right>性别：</td>
+                    <td><input type=radio name=sex value="女" checked=true>女&nbsp;&nbsp;<input type=radio name=sex value="男">男</td>
+                </tr>
+
+
+                <tr>
+                    <td align=right><img src="image/tx.png" id="previewimg" style="width:50px;height:50px">上传头像：</td>
+                    <td><input type="file" id="fileid" onchange="fileup(this)"></td>
+                </tr>
+
+
+
+
+
+                <tr>
+                    <td align=right>联系电话：</td>
+                    <td><input type="tel" name="dianhua" pattern="^\d{11}$" placeholder="请输入11位联系电话" /></td>
+                </tr>
+
+                <tr>
+                    <td align=right>年龄：</td>
+                    <td><input type="number" name="age" min="18" max="60" step="1" placeholder="18-60岁" /></td>
+                </tr>
+
+                <tr>
+                    <td align=right>
+                        <a href="dl.html"><input type=submit value="注册"></a>
+                    </td>
+                    <td><input type=reset value="取消" /></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+
+</body>
+
+</html>
